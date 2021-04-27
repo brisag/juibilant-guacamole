@@ -1,0 +1,10 @@
+<h2> Welcome to Garden Show Page </h2>
+<p> Attributes: </p>
+<%= @garden.name %><br>
+Organic? <%= @garden.organic %><br>
+
+
+<p> Harvestable under 90 day unique Plants in Garden: </p>
+<% @garden.unique_fast_plants.each do |plant| %>
+<%=  plant.name %><br>
+<% end %>
