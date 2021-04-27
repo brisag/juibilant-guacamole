@@ -23,7 +23,9 @@ RSpec.describe Garden do
     @plot_plant_6 = PlotPlant.create(plot: @plot_3, plant: @plant_1)
     @plot_plant_7 = PlotPlant.create(plot: @plot_4, plant: @plant_2)
     @plot_plant_8 = PlotPlant.create(plot: @plot_4, plant: @plant_3)
-    @plot_plant_7 = PlotPlant.create(plot: @plot_4, plant: @plant_5)
+    @plot_plant_9 = PlotPlant.create(plot: @plot_4, plant: @plant_5)
+    @plot_plant_10 = PlotPlant.create(plot: @plot_3, plant: @plant_5)
+    @plot_plant_10 = PlotPlant.create(plot: @plot_1, plant: @plant_5)
 
   end
 
@@ -34,13 +36,13 @@ RSpec.describe Garden do
   end
 
   describe 'instance methods' do
-    describe 'unique_fast_plants' do
-      it 'list distinct plants that are harvested less than 90 days' do
-        expect(@garden_1.unique_fast_plants).to eq([@plant_2, @plant_4, @plant_5])
-        expect(@garden_1.unique_fast_plants).to_not eq([@plant_2, @plant_2, @plant_4, @plant_5, @plant_5])
+    describe 'describe unique_fast_plants' do
+      it 'Ordered most to least list distinct plants that are harvested less than 90 days' do
+        expect(@garden_1.unique_fast_plants_sorted_by_most_popular).to eq([@plant_5, @plant_2, @plant_4])
+        expect(@garden_1.unique_fast_plants_sorted_by_most_popular).to_not eq([@plant_2, @plant_2, @plant_4, @plant_5, @plant_5])
         #data above has plant 2 and plant 5 listed twice. we do not want to list them out twice, thus distinct is used.
 
-        expect(@garden_1.unique_fast_plants).to_not eq([@plant_1, @plant_3])
+        expect(@garden_1.unique_fast_plants_sorted_by_most_popular).to_not eq([@plant_1, @plant_3])
         expect(@plant_3.days_to_harvest).to eq(180)
         expect(@plant_1.days_to_harvest).to eq(90)
         expect(@plant_2.days_to_harvest).to eq(20)
@@ -48,3 +50,37 @@ RSpec.describe Garden do
     end
   end
 end
+
+    #   it 'list distinct plants that are harvested less than 90 days' do
+    #     expect(@garden_1.unique_fast_plants).to eq([@plant_2, @plant_4, @plant_5])
+    #     expect(@garden_1.unique_fast_plants).to_not eq([@plant_2, @plant_2, @plant_4, @plant_5, @plant_5])
+    #     #data above has plant 2 and plant 5 listed twice. we do not want to list them out twice, thus distinct is used.
+    #
+    #     expect(@garden_1.unique_fast_plants).to_not eq([@plant_1, @plant_3])
+    #     expect(@plant_3.days_to_harvest).to eq(180)
+    #     expect(@plant_1.days_to_harvest).to eq(90)
+    #     expect(@plant_2.days_to_harvest).to eq(20)
+    #   end
+    # end
+
+    # describe 'unique_fast_plants' do
+    #   it 'list distinct plants that are harvested less than 90 days' do
+    #     expect(@garden_1.unique_fast_plants).to eq([@plant_2, @plant_4, @plant_5])
+    #     expect(@garden_1.unique_fast_plants).to_not eq([@plant_2, @plant_2, @plant_4, @plant_5, @plant_5])
+    #     #data above has plant 2 and plant 5 listed twice. we do not want to list them out twice, thus distinct is used.
+    #
+    #     expect(@garden_1.unique_fast_plants).to_not eq([@plant_1, @plant_3])
+    #     expect(@plant_3.days_to_harvest).to eq(180)
+    #     expect(@plant_1.days_to_harvest).to eq(90)
+    #     expect(@plant_2.days_to_harvest).to eq(20)
+    #   end
+    # end
+
+    # describe 'popular_plants' do
+    #   it 'list of plants is sorted by the number of plants that appear in any of that gardens plots' do
+    #     expect(@garden_1.popular_plants).to eq([@plant_5, @plant_2, @plant_1, @plant_3, @plant_4])
+    #     expect(@garden_1.popular_plants).to_not eq([@plant_1, @plant_5, @plant_5, @plant_2, @plant_3, @plant_3, @plant_3])
+    #   end
+    # end
+#   end
+# end
