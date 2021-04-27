@@ -77,5 +77,17 @@ RSpec.describe 'As a visitor' do
         expect(page).to have_content(@plant_3.name)
       end
     end
+
+    describe "Next to each plant's name, I see a link to remove that plant from that plot" do
+      describe "When I click on that link, I'm returned to the plots index page, And I no longer see that plant listed under that plot" do
+        within "#plant-#{@plant_1.id}" do
+          expect(page).to have_button("Remove #{@plant_1.name}")
+        end
+
+        within "#plant-#{@plant_2.id}" do
+          expect(page).to have_button("Remove #{@plant_2.name}")
+        end
+      end
+    end
   end
 end

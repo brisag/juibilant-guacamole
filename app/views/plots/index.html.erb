@@ -7,10 +7,10 @@
 
 
   <h2>Plots Plants:</h2> <% plot.plants.each do |plant| %>
-                      <section id="plant-<%=plant.id%>">
-                        <h2><%= plant.name %>
+                      <section id="plant-<%= plant.id %>">
+                        <h2><%= plant.name %><%= button_to "Remove #{plant.name}", plot_plant_path(plot, plant), method: :delete %>
 
-  </section>
+                        </section>
   <% end %>
     </section>
 <% end %>
