@@ -5,6 +5,6 @@ Organic? <%= @garden.organic %><br>
 
 
 <p> Harvestable under 90 day unique Plants in Garden: </p>
-<% @garden.unique_fast_plants.each do |plant| %>
-<%=  plant.name %><br>
+<% @garden.unique_fast_plants_sorted_by_most_popular.each do |plant| %>
+<%=  plant.name %> - <%=  plant.plant_count %>
 <% end %>
