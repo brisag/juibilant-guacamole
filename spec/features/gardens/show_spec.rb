@@ -35,11 +35,16 @@ RSpec.describe 'As a visitor' do
     end
 
     it "And I see that this list only includes plants (no duplicate names) that take less than 100 days to harvest" do
-      expect(page).to have_content("Yellow")
-      expect(page).to have_content("Purple")
-      expect(page).to have_content("Mystery")
-      expect(page).to_not have_content("Blue")
-      expect(page).to_not have_content("Green")
+      expect(page).to have_content(@plant_2.name)
+      expect(page).to have_content(@plant_4.name)
+      expect(page).to have_content(@plant_5.name)
+      expect(page).to_not have_content(@plant_1.name)
+      expect(page).to_not have_content(@plant_3.name)
+    end
+
+    it "And I see that this list is ordered" do
+      expect(@plant_2.name).to appear_before(@plant_4.name)
+      expect(@plant_4.name).to appear_before(@plant_5.name)
     end
   end
 end
